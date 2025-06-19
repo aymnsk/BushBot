@@ -4,11 +4,17 @@ from io import BytesIO
 import base64
 
 # Import from model
+import os
 import sys
-sys.path.append("../model")
-from model import bushra_response
-from chat_history import load_chat_history, save_chat
 
+# Add the parent directory to the Python path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
+# Now you can import from model/
+from model.model import bushra_response
+from model.chat_history import load_chat_history, save_chat
 # Page config
 st.set_page_config(page_title="👩‍🦰 Bushra - Your Talking Pal", layout="centered")
 st.title("👩‍🦰 Bushra - Your Talking Pal")
