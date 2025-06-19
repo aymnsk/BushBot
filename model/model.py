@@ -23,9 +23,8 @@ You're smart, expressive, and your tone is warm and natural, like talking to a f
 History: {history}
 
 User: {user_input}
-Bushra:
+Bushra: Let me think... Hmm, okay! Well,
 """.strip()
-
     pipe = load_model()
     response = pipe(prompt)[0]['generated_text']
     return response[len(prompt):].strip()
