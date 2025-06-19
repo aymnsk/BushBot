@@ -38,8 +38,15 @@ if st.button("Talk"):
         save_chat(user_input, response)
 
         # Text-to-Speech
-        tts = gTTS(text=response, lang='en', tld='co.in')
-        fp = BytesIO()
-        tts.write_to_fp(fp)
-        fp.seek(0)
-        st.audio(fp, format="audio/mp3")
+               # Text-to-Speech with safety check
+        if response.strip():  # Only try TTS if there's actual text
+            try:
+                tts = gTTS(text=response, lang='en', tld='co.in')
+                fp = BytesIO()
+                tts.write_to_fp(fp)
+                fp.seek(0)
+                st.audio(fp, format="audio/mp3")
+            except Exception as e:
+                st.warning("Could not generate audio. Response was too short or empty.")
+        else:
+            st.warning("No response to speak.")
